@@ -1,0 +1,16 @@
+{
+  "plugins": [
+  ],
+  "extends": "google",
+  "rules": {
+    "new-cap": 0,
+    "require-jsdoc": 0
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
+  "env": {
+    "es6": true
+  }
+}

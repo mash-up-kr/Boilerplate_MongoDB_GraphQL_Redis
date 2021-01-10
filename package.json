@@ -1,0 +1,38 @@
+{
+  "name": "boilerplate_mongodb_graphql_redis",
+  "version": "1.0.0",
+  "description": "This project is a boilerplate with mongodb & graphql & redis",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npx nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mash-up-kr/Boilerplate_MongoDB_GraphQL_Redis.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "mongodb",
+    "graphql",
+    "redis"
+  ],
+  "author": "kor-Chipmunk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mash-up-kr/Boilerplate_MongoDB_GraphQL_Redis/issues"
+  },
+  "homepage": "https://github.com/mash-up-kr/Boilerplate_MongoDB_GraphQL_Redis#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.1",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.7"
+  }
+}
