@@ -9,11 +9,6 @@ class ExpressServer {
     this.port = port;
     this.app = app;
   }
-  get() {
-    this.app.get('/', (req, res) => {
-      res.send('Hello world!');
-    });
-  }
   setUpMiddlewares() {
     const __dirname = path.resolve();
     this.app.use(express.static(path.join(__dirname, 'public')));
@@ -43,5 +38,8 @@ class ExpressServer {
 
 const port = process.env.PORT || 3000;
 const expressServer = new ExpressServer(port, express());
+
+expressServer.listen();
+expressServer.setUpMiddlewares();
 
 export default expressServer;

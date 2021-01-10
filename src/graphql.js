@@ -30,4 +30,9 @@ const resolvers = {
 
 const apolloServer = new ApolloServer({typeDefs, resolvers});
 
+(async () => {
+  const {url} = await apolloServer.listen();
+  console.log(`🚀 Apollo Server ready at ${url}`);
+})();
+
 export default apolloServer;
