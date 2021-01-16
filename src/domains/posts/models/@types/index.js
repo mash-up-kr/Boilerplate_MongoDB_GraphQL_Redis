@@ -1,5 +1,5 @@
-import postDefs from './posts.graphql';
+import {postTypeDefs} from './posts.typedef.js';
 
-export default {
-  postDefs,
+export {
+  postTypeDefs,
 };

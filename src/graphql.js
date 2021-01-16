@@ -1,30 +1,22 @@
 import {ApolloServer, gql} from 'apollo-server';
+import domains from './domains/index.js';
 
 const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
+  scalar DateTime
+  
+  type Query
 
-  type Query {
-    books: [Book]
-  }
+  type Mutation
+
+  ${domains.postDomain.configGraphQL.typeDefs}
 `;
-
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-];
 
 const resolvers = {
   Query: {
-    books: () => books,
+    ...domains.postDomain.configGraphQL.resolvers.Query,
+  },
+  Mutation: {
+    ...domains.postDomain.configGraphQL.resolvers.Mutation,
   },
 };
 

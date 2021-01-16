@@ -1,1 +1,5 @@
-export default {};
+import {postTypeDefs} from './@types/index.js';
+
+export {
+  postTypeDefs,
+};
