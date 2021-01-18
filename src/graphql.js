@@ -23,7 +23,7 @@ const resolvers = {
 const apolloServer = new ApolloServer({typeDefs, resolvers});
 
 (async () => {
-  const {url} = await apolloServer.listen();
+  const {url} = await apolloServer.listen(process.env.APOLLO_PORT || 4000);
   console.log(`🚀 Apollo Server ready at ${url}`);
 })();
 

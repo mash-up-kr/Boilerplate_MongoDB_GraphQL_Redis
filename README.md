@@ -14,6 +14,25 @@ npm install
 npm run start
 ```
 
+## .env settings
+
+Change root directory .env.default file to following.
+* .env.development -> npm run start
+* .env.production -> npm run deploy
+* .env.test -> npm run testdb
+
+.env.default contents are following.
+
+```
+# Change to .env.{development | production | test} file
+EXPRESS_PORT=express server port
+APOLLO_PORT=apollo server port
+REDIS_DEFAULT=redis master host
+REDIS_DEFAULT_PORT=redis master port
+REDIS_READONLY=redis readonly host
+REDIS_READONLY_PORT=redis readonly port
+```
+
 ## Contributors
 * [kor-Chipmunk](https://github.com/kor-Chipmunk)
 * [batboy118](https://github.com/batboy118)
