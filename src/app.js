@@ -36,7 +36,7 @@ class ExpressServer {
   }
 }
 
-const port = process.env.PORT || 3000;
+const port = process.env.EXPRESS_PORT || 3000;
 const expressServer = new ExpressServer(port, express());
 
 expressServer.listen();
