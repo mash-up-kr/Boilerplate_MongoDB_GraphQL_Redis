@@ -1,9 +1,15 @@
-import dotenv from './dotenv.js';
-import expressServer from './app.js';
-import apolloServer from './graphql.js';
+import {initializeDotEnv} from './dotenv.js';
+import ExpressServer from './app.js';
+import GraphQLServer from './graphql.js';
+import MongoDB from './mongodb.js';
 
-export default {
-  dotenv,
-  expressServer,
-  apolloServer,
-};
+initializeDotEnv();
+
+export const expressServer = new ExpressServer();
+
+export const graphqlServer = new GraphQLServer();
+(async () => {
+  await graphqlServer.listen();
+})();
+
+export const mongoDB = new MongoDB();
