@@ -1,30 +1,43 @@
 import {ApolloServer, gql} from 'apollo-server';
 import domains from './domains/index.js';
 
-const typeDefs = gql`
-  scalar DateTime
-  
-  type Query
+export default class GraphQLServer {
+  constructor() {
+    this.port = process.env.APOLLO_PORT;
 
-  type Mutation
+    this.setupTypeDefs();
+    this.setupResolvers();
 
-  ${domains.postDomain.configGraphQL.typeDefs}
-`;
+    this.apolloServer = new ApolloServer({
+      typeDefs: this.typeDefs,
+      resolvers: this.resolvers,
+    });
+  }
 
-const resolvers = {
-  Query: {
-    ...domains.postDomain.configGraphQL.resolvers.Query,
-  },
-  Mutation: {
-    ...domains.postDomain.configGraphQL.resolvers.Mutation,
-  },
+  setupTypeDefs() {
+    this.typeDefs = gql`
+      scalar DateTime
+
+      type Query
+      type Mutation
+
+      ${domains.postDomain.configGraphQL.typeDefs}
+    `;
+  }
+
+  setupResolvers() {
+    this.resolvers = {
+      Query: {
+        ...domains.postDomain.configGraphQL.resolvers.Query,
+      },
+      Mutation: {
+        ...domains.postDomain.configGraphQL.resolvers.Mutation,
+      },
+    };
+  }
+
+  async listen() {
+    const {url} = await this.apolloServer.listen(this.port);
+    console.log(`🚀 Apollo Server ready at ${url}`);
+  }
 };
-
-const apolloServer = new ApolloServer({typeDefs, resolvers});
-
-(async () => {
-  const {url} = await apolloServer.listen(process.env.APOLLO_PORT || 4000);
-  console.log(`🚀 Apollo Server ready at ${url}`);
-})();
-
-export default apolloServer;

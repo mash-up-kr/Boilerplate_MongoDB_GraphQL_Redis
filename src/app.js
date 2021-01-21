@@ -4,10 +4,13 @@ import morgan from './middlewares/morgan.js';
 import cors from 'cors';
 import path from 'path';
 
-class ExpressServer {
-  constructor(port, app) {
-    this.port = port;
-    this.app = app;
+export default class ExpressServer {
+  constructor() {
+    this.port = process.env.EXPRESS_PORT;
+    this.app = express();
+
+    this.setUpMiddlewares();
+    this.listen();
   }
   setUpMiddlewares() {
     const __dirname = path.resolve();
@@ -31,15 +34,7 @@ class ExpressServer {
         reutnr;
       }
 
-      console.log(`🚀 Express Server ready at ${port}`);
+      console.log(`🚀 Express Server ready at ${this.port}`);
     });
   }
-}
-
-const port = process.env.EXPRESS_PORT || 3000;
-const expressServer = new ExpressServer(port, express());
-
-expressServer.listen();
-expressServer.setUpMiddlewares();
-
-export default expressServer;
+};
