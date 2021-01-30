@@ -9,7 +9,9 @@
     "start": "NODE_ENV=development npx nodemon src/index.js",
     "start_test": "NODE_ENV=test npx nodemon src/index.js",
     "deploy": "NODE_ENV=production npx nodemon src/index.js",
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+
+    "build": "docker-compose build && docker-compose up -d"
   },
   "repository": {
     "type": "git",
