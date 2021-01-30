@@ -14,6 +14,14 @@ npm install
 npm run start
 ```
 
+with docker
+```
+git clone https://github.com/mash-up-kr/Boilerplate_MongoDB_GraphQL_Redis.git
+cd ./Boilerplate_MongoDB_GraphQL_Redis
+docker-compose build
+docker-compose up -d
+```
+
 ## .env settings
 
 Change root directory .env.default file to following.

@@ -1,15 +1,18 @@
 import Redis from 'ioredis';
 
-class RedisClient {
+export default class RedisClient {
   constructor() {
+    // 쓰기 전용 (읽기도 됨)
     self.redisDefault = new Redis(
-        REDIS_DEFAULT_PORT || 6379,
-        process.env.REDIS_DEFAULT || '127.0.0.1',
+        REDIS_DEFAULT_PORT,
+        process.env.REDIS_DEFAULT,
     );
+
+    // 읽기 전용
     self.redisReadonly = new Redis(
-        REDIS_READONLY_PORT || 6379,
-        process.env.REDIS_READONLY || '127.0.0.1')
-    ;
+        REDIS_READONLY_PORT,
+        process.env.REDIS_READONLY,
+    );
 
     self.getAsyncDefault = promisify(redisDefault.get).bind(redisDefault);
     self.getAsyncReadonly = promisify(redisReadonly.get).bind(redisReadonly);
@@ -31,6 +34,4 @@ class RedisClient {
         timeoutSecs,
     );
   }
-}
-
-export default new RedisClient;
+};
