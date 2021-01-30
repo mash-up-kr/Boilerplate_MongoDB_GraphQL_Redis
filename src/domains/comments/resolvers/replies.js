@@ -8,10 +8,9 @@ const replies = async (parent, args, context, info) => {
     isDeleted: false,
   };
 
-  const comments = await Comment.find(filter)
-      .populate('replies');
+  const replies = await Comment.findOne(filter).populate('replies');
 
-  return comments;
+  return replies;
 };
 
 export default replies;

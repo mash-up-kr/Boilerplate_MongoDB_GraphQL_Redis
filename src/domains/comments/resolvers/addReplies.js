@@ -7,25 +7,36 @@ const addReplies = async (parent, args, context, info) => {
   const filter = {
     _id,
     isDeleted: false,
+    isChild: false,
   };
+
+  const session = await Comment.startSession();
+  session.startTransaction();
+
+  const getComment = await Comment.findOne(filter);
 
   const pushItem = {
     comment,
     author,
     ipv4,
+    postId: getComment.postId,
+    isChild: true,
   };
 
   const update = {
     $push: {
-      replies: pushItem,
+      replies: await Comment.create(pushItem),
     },
   };
 
-  const newComment = await Comment.findOneAndUpdate(filter, update);
+  const updateComment = await Comment.findOneAndUpdate(filter, update, {
+    new: true,
+  }).populate('replies');
 
-  console.log(newComment);
+  await session.abortTransaction();
+  session.endSession();
 
-  return newComment;
+  return updateComment;
 };
 
 export default addReplies;

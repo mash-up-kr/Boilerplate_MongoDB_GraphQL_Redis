@@ -3,21 +3,22 @@ import {gql} from 'apollo-server';
 const commentTypeDefs = gql`
   type Comment {
     _id: ID!
-    postId: Post!
     comment: String!
     author: String!
     ipv4: String!
-    isDeleted: Boolean!
+    isDeleted: Boolean
     createdAt: DateTime!
     updatedAt: DateTime!
     deletedAt: DateTime
-    replies: [Comment]!
+    isChild: Boolean!
+    postId: Post!
+    replies: [Comment]
   }
 
   extend type Query {
     comment(_id: ID!): Comment
     comments(postId: ID!): [Comment]
-    replies(_id: ID!): [Comment]
+    replies(_id: ID!): Comment
   }
 
   extend type Mutation {
