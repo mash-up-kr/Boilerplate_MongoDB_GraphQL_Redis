@@ -12,7 +12,7 @@ const commentTypeDefs = gql`
     deletedAt: DateTime
     isChild: Boolean!
     parent: Comment
-    postId: Post!
+    post: Post!
     replies: [Comment]
   }
 

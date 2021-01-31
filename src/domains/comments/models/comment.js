@@ -43,7 +43,7 @@ const commentSchema = new Schema({
     ref: 'Comment',
     required: false,
   },
-  postId: {
+  post: {
     type: ObjectId,
     ref: 'Post',
     required: true,

@@ -27,7 +27,7 @@ export const addReply = async (_id, comment, author, ipv4) => {
     comment,
     author,
     ipv4,
-    postId: getComment.postId,
+    post: getComment.post._id,
     isChild: true,
     parent: _id,
   };
@@ -62,13 +62,14 @@ export const getComment = async (_id) => {
 
 export const getComments = async (postId) => {
   const filter = {
-    postId,
+    post: postId,
     isDeleted: false,
     isChild: false,
   };
 
   const comments = await Comment.find(filter)
-      .populate('replies');
+      .populate('replies')
+      .populate('post');
 
   return comments;
 };
