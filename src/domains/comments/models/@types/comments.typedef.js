@@ -22,7 +22,7 @@ const commentTypeDefs = gql`
   }
 
   extend type Mutation {
-    addComments(
+    addComment(
       comment: String!
       author: String!
       postId: ID!
@@ -38,7 +38,7 @@ const commentTypeDefs = gql`
       author: String!
     ): Comment
 
-    addReplies(
+    addReply(
       _id: ID!
       comment: String!
       author: String!

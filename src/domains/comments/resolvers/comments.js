@@ -1,17 +1,9 @@
-import {Comment} from '../models/index.js';
+import {getComments} from '../services/comment.service.js';
 
-const getComments = async (parent, args, context, info) => {
+const resolver = async (parent, args, context, info) => {
   const {postId} = args;
 
-  const filter = {
-    postId,
-    isDeleted: false,
-  };
-
-  const comments = await Comment.find(filter)
-      .populate('comments');
-
-  return comments;
+  return getComments(postId);
 };
 
-export default getComments;
+export default resolver;
