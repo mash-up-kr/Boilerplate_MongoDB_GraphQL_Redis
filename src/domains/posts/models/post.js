@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const {model, Schema} = mongoose;
+const {Schema} = mongoose;
 const {Types: {ObjectId}} = Schema;
 
 const postSchema = new Schema({
@@ -30,4 +30,4 @@ const postSchema = new Schema({
   ],
 });
 
-export default model('Post', postSchema);
+export const Post = mongoose.model('Post', postSchema);

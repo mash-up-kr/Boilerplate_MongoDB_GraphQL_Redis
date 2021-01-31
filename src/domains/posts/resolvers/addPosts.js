@@ -1,13 +1,15 @@
+import {Post} from '../models/index.js';
+
 const addPosts = async (_, {
   title,
-  author,
   content,
+  createdAt,
 }) => {
-  const newPost = {
+  const newPost = await Post.create({
     title,
-    author,
     content,
-  };
+    createdAt,
+  });
 
   return newPost;
 };

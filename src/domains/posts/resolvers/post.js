@@ -4,7 +4,6 @@ const getPost = async (_, {
   const post = {
     id,
     title: 'title 1',
-    author: 'author 1',
     content: 'content',
     createdAt: Date.now(),
   };

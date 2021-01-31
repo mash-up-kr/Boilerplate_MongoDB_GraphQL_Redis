@@ -6,7 +6,6 @@ const getPosts = async (_) => {
       id: i,
       title: `title ${i}`,
       content: `content`,
-      author: `author ${i}`,
       createdAt: Date.now(),
     });
   }
