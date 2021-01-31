@@ -64,10 +64,11 @@ export const getComments = async (postId) => {
   const filter = {
     postId,
     isDeleted: false,
+    isChild: false,
   };
 
   const comments = await Comment.find(filter)
-      .populate('comments');
+      .populate('replies');
 
   return comments;
 };
