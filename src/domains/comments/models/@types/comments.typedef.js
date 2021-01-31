@@ -11,6 +11,7 @@ const commentTypeDefs = gql`
     updatedAt: DateTime!
     deletedAt: DateTime
     isChild: Boolean!
+    parent: Comment
     postId: Post!
     replies: [Comment]
   }
@@ -21,28 +22,32 @@ const commentTypeDefs = gql`
     replies(_id: ID!): Comment
   }
 
+  input CommentInput {
+    comment: String!
+    author: String!
+    postId: ID!
+  }
+
+  input EditCommentInput {
+    _id: ID!
+    comment: String!
+    author: String!
+  }
+
+  input ReplyInput {
+    _id: ID!
+    comment: String!
+    author: String!
+  }
+
   extend type Mutation {
-    addComment(
-      comment: String!
-      author: String!
-      postId: ID!
-    ): Comment
+    addComment(input: CommentInput!): Comment
 
-    removeComment(
-      _id: ID!
-    ): Comment
+    removeComment(_id: ID!): Comment
 
-    editComment(
-      _id: ID!
-      comment: String!
-      author: String!
-    ): Comment
+    editComment(input: EditCommentInput): Comment
 
-    addReply(
-      _id: ID!
-      comment: String!
-      author: String!
-    ): Comment
+    addReply(input: ReplyInput): Comment
   }
 `;
 

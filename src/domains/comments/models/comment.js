@@ -38,6 +38,11 @@ const commentSchema = new Schema({
     required: false,
     default: false,
   },
+  parent: {
+    type: ObjectId,
+    ref: 'Comment',
+    required: false,
+  },
   postId: {
     type: ObjectId,
     ref: 'Post',

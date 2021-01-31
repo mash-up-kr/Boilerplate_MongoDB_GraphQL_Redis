@@ -29,6 +29,7 @@ export const addReply = async (_id, comment, author, ipv4) => {
     ipv4,
     postId: getComment.postId,
     isChild: true,
+    parent: _id,
   };
 
   const update = {
