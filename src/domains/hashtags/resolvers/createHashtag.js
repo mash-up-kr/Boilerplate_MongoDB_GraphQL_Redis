@@ -1,15 +1,8 @@
-import Hashtag from '../models/schema/index.js';
+import {Hashtag} from '../models/index.js';
 
-const createHashtag = async (_, {
-  tag,
-  posts,
-}) => {
-  try {
-    return await new Hashtag({tag, posts}).save();
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+const createHashtag = async (parent, args, context, info) => {
+  const {tag, posts} = args;
+  return await new Hashtag({tag, posts}).save();
 };
 
 export default createHashtag;

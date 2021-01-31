@@ -1,5 +1,6 @@
 import {gql} from 'apollo-server';
 
+// TODO: posts: [Post] 로 변경
 const hashtagTypeDefs = gql`
   type Hashtag {
     id: ID!

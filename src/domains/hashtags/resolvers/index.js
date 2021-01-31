@@ -1,7 +1,7 @@
 import hashtag from './hashtag.js';
 import hashtags from './hashtags.js';
 import createHashtag from './createHashtag.js';
-// import addHashtag from './addHashtag.js';
+import addHashtag from './addHashtag.js';
 
 const hashtagResolvers = {
   Query: {
@@ -11,7 +11,7 @@ const hashtagResolvers = {
 
   Mutation: {
     createHashtag,
-    // addHashtag,
+    addHashtag,
   },
 };
 

@@ -1,18 +1,11 @@
-import Hashtag from '../models/schema/index.js';
+import {Hashtag} from '../models/index.js';
 
 // TODO : TEST 해보기
-const addPostIdOnHashtag = async (_, {
-  tagId,
-  postId,
-}) => {
-  try {
-    return await Hashtag.findByIdAndUpdate(
-        {_id: tagId},
-        {$push: {posts: postId}});
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+const addHashtag = async (parent, args, context, info) => {
+  const {tagId, postId} = args;
+  return await Hashtag.findByIdAndUpdate(
+      tagId,
+      {$push: {posts: postId}});
 };
 
-export default addPostIdOnHashtag;
+export default addHashtag;

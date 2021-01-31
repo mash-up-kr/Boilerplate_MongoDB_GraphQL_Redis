@@ -1,16 +1,9 @@
-import Hashtag from '../models/schema/index.js';
+import {Hashtag} from '../models/index.js';
 
-const getHashtag = async (_, {
-  id,
-}) => {
-  try {
-    const hashtag = await Hashtag.findById(id);
-    if (hashtag) return hashtag;
-    throw new Error('Hashtag no found');
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
+const getHashtag = async (parent, args, context, info) => {
+  const {id} = args;
+  const hashtag = await Hashtag.findById(id);
+  if (hashtag) return hashtag;
 };
 
 export default getHashtag;
