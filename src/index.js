@@ -1,11 +1,15 @@
-import expressServer from './app.js';
-import apolloServer from './graphql.js';
+import {initializeDotEnv} from './dotenv.js';
+import ExpressServer from './app.js';
+import GraphQLServer from './graphql.js';
+import MongoDB from './mongodb.js';
 
-expressServer.get();
-expressServer.listen();
-expressServer.setUpMiddlewares();
+initializeDotEnv();
 
+export const expressServer = new ExpressServer();
+
+export const graphqlServer = new GraphQLServer();
 (async () => {
-  const {url} = await apolloServer.listen();
-  console.log(`🚀 Apollo Server ready at ${url}`);
+  await graphqlServer.listen();
 })();
+
+export const mongoDB = new MongoDB();
