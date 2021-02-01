@@ -1,1 +1,5 @@
-export default {};
+import {hashtagTypeDefs} from './@types/index.js';
+
+export {
+  hashtagTypeDefs,
+};
