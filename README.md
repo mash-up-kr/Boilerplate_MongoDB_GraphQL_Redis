@@ -39,6 +39,12 @@ REDIS_DEFAULT=redis master host
 REDIS_DEFAULT_PORT=redis master port
 REDIS_READONLY=redis readonly host
 REDIS_READONLY_PORT=redis readonly port
+
+MONGODB_ID=mongodb id
+MONGODB_PASSWORD=mongodb password
+MONGODB_IP=mongodb ip
+MONGODB_PORT=mongodb port
+MONGODB_AUTHENTICATION_DB=mongo db authentication database name
 ```
 
 ## Contributors
