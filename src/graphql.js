@@ -25,6 +25,7 @@ export default class GraphQLServer {
 
       ${domains.postDomain.configGraphQL.typeDefs}
       ${domains.commentDomain.configGraphQL.typeDefs}
+      ${domains.hashtagDomain.configGraphQL.typeDefs}
     `;
   }
 
@@ -33,10 +34,12 @@ export default class GraphQLServer {
       Query: {
         ...domains.postDomain.configGraphQL.resolvers.Query,
         ...domains.commentDomain.configGraphQL.resolvers.Query,
+        ...domains.hashtagDomain.configGraphQL.resolvers.Query,
       },
       Mutation: {
         ...domains.postDomain.configGraphQL.resolvers.Mutation,
         ...domains.commentDomain.configGraphQL.resolvers.Mutation,
+        ...domains.hashtagDomain.configGraphQL.resolvers.Mutation,
       },
     };
   }
@@ -59,3 +62,4 @@ export default class GraphQLServer {
     console.log(`🚀 Apollo Server ready at ${url}`);
   }
 };
+
