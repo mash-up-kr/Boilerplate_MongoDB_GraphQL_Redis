@@ -2,15 +2,15 @@ import {gql} from 'apollo-server';
 
 const postTypeDefs = gql`
   type Post {
-    id: ID!
+    _id: String!
     title: String!
     author: String!
     content: String!
-    createdAt: DateTime!
+    createdAt: String!
   }
 
   extend type Query {
-    post(id: ID!): Post
+    post(_id: ID!): Post
     posts: [Post]
   }
 
@@ -22,11 +22,11 @@ const postTypeDefs = gql`
     ): Post
 
     removePost(
-      id: ID!
-    ): Boolean
+      _id: ID!
+    ): Post
 
     editPost(
-      id: ID!
+      _id: ID!
       title: String!
       author: String!
       content: String!
