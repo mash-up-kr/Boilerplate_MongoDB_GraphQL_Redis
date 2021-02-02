@@ -1,12 +1,9 @@
-const getPost = async (_, {
-  id,
-}) => {
-  const post = {
-    id,
-    title: 'title 1',
-    content: 'content',
-    createdAt: Date.now(),
-  };
+import {Post} from '../models/post.js';
+
+const getPost = async (parent, args, context, info) => {
+  const _id = args._id;
+
+  const post = await Post.findById(_id);
 
   return post;
 };
