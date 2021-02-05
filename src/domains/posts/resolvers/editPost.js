@@ -1,26 +1,10 @@
-import {Post} from '../models/index.js';
+import {editPost} from '../services/post.service.js';
 
-const editPost = async (parent, args, context, info) => {
+const resolver = async (parent, args, context, info) => {
   const {_id, title, author, content} = args;
+  const {ipv4} = context;
 
-
-  const filter = {
-    _id,
-  };
-
-  const update = {
-    title,
-    author,
-    content,
-  };
-
-  const editPost = await Post.findOneAndUpdate(
-      filter,
-      update,
-      {new: true},
-  );
-
-  return editPost;
+  return await editPost(_id, title, author, content, ipv4);
 };
 
-export default editPost;
+export default resolver;

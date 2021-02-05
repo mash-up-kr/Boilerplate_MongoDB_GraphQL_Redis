@@ -1,9 +1,10 @@
-import {Post} from '../models/index.js';
+import {removePost} from '../services/post.service.js';
 
-const removePost = async (parent, args, context, info) => {
-  const _id = args._id;
+const resolver = async (parent, args, context, info) => {
+  const {_id} = args;
+  const {ipv4} = context;
 
-  return await Post.findOneAndDelete({_id});
+  return await removePost(_id, ipv4);
 };
 
-export default removePost;
+export default resolver;

@@ -1,9 +1,8 @@
-import {Hashtag} from '../models/index.js';
+import {getHashtag} from '../services/hashtag.service.js';
 
-const getHashtag = async (parent, args, context, info) => {
-  const {id} = args;
-  const hashtag = await Hashtag.findById(id);
-  if (hashtag) return hashtag;
+const resolver = async (parent, args, context, info) => {
+  const {_id} = args;
+  return await getHashtag(_id);
 };
 
-export default getHashtag;
+export default resolver;

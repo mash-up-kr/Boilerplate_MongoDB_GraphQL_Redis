@@ -6,7 +6,13 @@ const postTypeDefs = gql`
     title: String!
     author: String!
     content: String!
-    createdAt: String!
+    ipv4: String!
+    isDeleted: Boolean
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+    comments: [Comment]
+    hashtags: [Hashtag]
   }
 
   extend type Query {
@@ -14,24 +20,25 @@ const postTypeDefs = gql`
     posts: [Post]
   }
 
+  input PostInput {
+    title: String!
+    author: String!
+    content: String!
+  }
+
+  input EditPostInput {
+    _id: ID!
+    title: String!
+    author: String!
+    content: String!
+  }
+
   extend type Mutation {
-    addPosts(
-      title: String!
-      author: String!
-      content: String!
-    ): Post
+    addPost(input: PostInput!): Post
 
-    removePost(
-      _id: ID!
-    ): Post
+    removePost(_id: ID!): Post
 
-    editPost(
-      _id: ID!
-      title: String!
-      author: String!
-      content: String!
-    ): Post
-    
+    editPost(input: EditPostInput!): Post
   }
 `;
 

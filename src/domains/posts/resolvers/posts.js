@@ -1,22 +1,7 @@
-import {Post} from '../models/post.js';
+import {getPosts} from '../services/post.service.js';
 
-const getPosts = async ( ) => {
-  const posts = await Post.find();
-
-  /**
-  const posts = [];
-
-  for (let i = 0; i < 20; ++i) {
-    posts.push({
-      id: i,
-      title: `title ${i}`,
-      author: `author ${i}`,
-      content: `content`,
-      createdAt: Date.now(),
-    });
-  }
-*/
-  return posts;
+const resolver = async (parent, args, context, info) => {
+  return await getPosts();
 };
 
-export default getPosts;
+export default resolver;

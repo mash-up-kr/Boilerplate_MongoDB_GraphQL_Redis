@@ -16,9 +16,26 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  ipv4: {
+    type: String,
+    required: true,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  deletedAt: {
+    type: Date,
+    required: false,
+    default: null,
   },
   comments: [
     {

@@ -1,11 +1,9 @@
-import {Hashtag} from '../models/index.js';
+import {addHashtag} from '../services/hashtag.service.js';
 
-// TODO : TEST 해보기
-const addHashtag = async (parent, args, context, info) => {
-  const {tagId, postId} = args;
-  return await Hashtag.findByIdAndUpdate(
-      tagId,
-      {$push: {posts: postId}});
+const resolver = async (parent, args, context, info) => {
+  const {title, postId} = args.input;
+
+  return await addHashtag(title, postId);
 };
 
-export default addHashtag;
+export default resolver;

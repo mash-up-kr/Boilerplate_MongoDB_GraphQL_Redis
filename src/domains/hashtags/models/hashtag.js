@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 const {Types: {ObjectId}} = Schema;
 
 const hashtagSchema = new Schema({
-  tag: {
+  title: {
     type: String,
     required: true,
     unique: true,
@@ -16,6 +16,10 @@ const hashtagSchema = new Schema({
     },
   ],
   createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

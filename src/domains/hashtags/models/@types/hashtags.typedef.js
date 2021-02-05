@@ -1,12 +1,12 @@
 import {gql} from 'apollo-server';
 
-// TODO: posts: [Post] 로 변경
 const hashtagTypeDefs = gql`
   type Hashtag {
-    id: ID!
-    tag: String!
-    posts: [ID]
+    _id: ID!
+    title: String!
+    posts: [Post]
     createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   extend type Query {
@@ -14,15 +14,13 @@ const hashtagTypeDefs = gql`
     hashtags: [Hashtag]
   }
 
+  input HashtagInput {
+    title: String!
+    postId: ID
+  }
+
   extend type Mutation {
-    createHashtag(
-      tag: String!
-      posts: [ID]
-    ): Hashtag!
-    addHashtag(
-      tag: ID!
-      post: ID!
-    ) : Hashtag!
+    addHashtag(input: HashtagInput!): Hashtag
   }
 `;
 

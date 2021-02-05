@@ -1,6 +1,5 @@
 import hashtag from './hashtag.js';
 import hashtags from './hashtags.js';
-import createHashtag from './createHashtag.js';
 import addHashtag from './addHashtag.js';
 
 const hashtagResolvers = {
@@ -10,7 +9,6 @@ const hashtagResolvers = {
   },
 
   Mutation: {
-    createHashtag,
     addHashtag,
   },
 };
