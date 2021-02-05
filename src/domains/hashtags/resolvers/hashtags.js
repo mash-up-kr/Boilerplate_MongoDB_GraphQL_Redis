@@ -1,7 +1,7 @@
-import {Hashtag} from '../models/index.js';
+import {getHashtags} from '../services/hashtag.service.js';
 
-const getHashtags = async (parent, args, context, info) => {
-  return await Hashtag.find();
+const resolver = async (parent, args, context, info) => {
+  return await getHashtags();
 };
 
-export default getHashtags;
+export default resolver;
