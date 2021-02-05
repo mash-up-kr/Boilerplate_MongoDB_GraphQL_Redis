@@ -87,9 +87,13 @@ export const editComment = async (_id, comment, author, ipv4) => {
     updatedAt: Date.now(),
   };
 
-  const editComment = await Comment.findOneAndUpdate(filter, update, {
-    new: true,
-  });
+  const editComment = await Comment.findOneAndUpdate(
+      filter,
+      update,
+      {
+        new: true,
+      },
+  );
 
   return editComment;
 };
