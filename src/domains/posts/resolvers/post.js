@@ -1,11 +1,9 @@
-import {Post} from '../models/post.js';
+import {getPost} from '../services/post.service.js';
 
-const getPost = async (parent, args, context, info) => {
-  const _id = args._id;
+const resolver = async (parent, args, context, info) => {
+  const {_id} = args;
 
-  const post = await Post.findById(_id);
-
-  return post;
+  return await getPost(_id);
 };
 
-export default getPost;
+export default resolver;
