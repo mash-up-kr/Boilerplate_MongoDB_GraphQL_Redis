@@ -9,12 +9,13 @@ export default class Mongoose {
   }
 
   connect() {
-    const MongoDBURL = `mongodb+srv://admin:1212@boilerprojectcluster.4j1xk.mongodb.net/boilerplate?retryWrites=true&w=majority`;
+    const MongoDBURL = `mongodb://${process.env.MONGODB_ID}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_IP}:${process.env.MONGODB_PORT}/${process.env.MONGODB_AUTHENTICATION_DB}`;
     mongoose.connect(MongoDBURL, {
-      // dbName: 'boilerplate',
+      dbName: 'boilerplate',
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    mongoose.set('useFindAndModify', false);
     this.mongoose = mongoose.connection;
   }
 
