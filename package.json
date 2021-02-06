@@ -6,8 +6,11 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src",
-    "start": "NODE_ENV=development npx nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=development npx nodemon src/index.js",
+    "start_test": "cross-env NODE_ENV=test npx nodemon src/index.js",
+    "deploy": "cross-env NODE_ENV=production npx nodemon src/index.js",
+    "test": "./node_modules/.bin/mocha",
+    "build": "docker-compose build && docker-compose up -d"
   },
   "repository": {
     "type": "git",
@@ -37,19 +40,25 @@
   },
   "dependencies": {
     "apollo-server": "^2.19.1",
+    "apollo-server-testing": "^2.19.1",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.4.0",
+    "graphql-type-datetime": "^0.2.4",
     "moment": "^2.29.1",
     "mongoose": "^5.11.11",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^7.17.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.7"
   }
 }

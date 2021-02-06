@@ -70,7 +70,7 @@ typings/
 
 # dotenv environment variables file
 .env
-.env.develop
+.env.development
 .env.production
 .env.test
 
@@ -107,3 +107,6 @@ dist
 
 # IDE
 .idea
+
+.data/
+data/
