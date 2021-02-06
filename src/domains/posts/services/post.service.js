@@ -2,14 +2,7 @@ import {Post} from '../models/index.js';
 import * as hashTagService from '../../hashtags/services/hashtag.service.js';
 
 export const addPost = async (title, author, content, ipv4) => {
-  const parsedHashtags = parseHashtags(content);
-
-  let hashtags = null;
-  try {
-    hashtags = await hashTagService.createBulkHashtag(parsedHashtags);
-  } catch (error) {
-    hashtags = await hashTagService.getHashtagsBytitleArray(parsedHashtags);
-  }
+  const hashtags = await hashTagService.parsedAndCreateBulkHashtags(content);
 
   const newPost = await Post.create({
     title,
@@ -22,17 +15,9 @@ export const addPost = async (title, author, content, ipv4) => {
   return newPost;
 };
 
-const parseHashtags = (content) => {
-  const regexExpression = /#[^\s#]+/g;
-  const parsedHashtags = content.match(
-      regexExpression,
-  ).map(
-      (tag) => tag.slice(1).toLowerCase(),
-  );
-  return parsedHashtags;
-};
-
 export const editPost = async (_id, title, author, content, ipv4) => {
+  const hashtags = await hashTagService.parsedAndCreateBulkHashtags(content);
+
   const filter = {
     _id,
     ipv4,
@@ -44,6 +29,7 @@ export const editPost = async (_id, title, author, content, ipv4) => {
     author,
     content,
     updatedAt: Date.now(),
+    hashtags,
   };
 
   const editPost = await Post.findOneAndUpdate(
